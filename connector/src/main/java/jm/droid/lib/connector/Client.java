@@ -5,6 +5,7 @@ import android.os.IInterface;
 import android.os.RemoteException;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -34,13 +35,17 @@ public abstract class Client<S extends IInterface> {
             @NonNull ClientConfiguration clientConfiguration,
             @NonNull ConnectionManager connectionManager,
             @NonNull ServiceGetter<S> serviceGetter,
-            @NonNull RemoteOperation<S, Integer> remoteVersionGetter) {
+            @Nullable RemoteOperation<S, Integer> remoteVersionGetter) {
         QueueOperation versionOperation =
                 new QueueOperation() {
                     @Override
                     public void execute(IBinder binder) throws RemoteException {
-                        mCurrentVersion =
-                                remoteVersionGetter.execute(serviceGetter.getService(binder));
+                        if (remoteVersionGetter == null) {
+                            mCurrentVersion = UNKNOWN_VERSION;
+                        } else {
+                            mCurrentVersion =
+                                    remoteVersionGetter.execute(serviceGetter.getService(binder));
+                        }
                     }
 
                     @Override
@@ -106,6 +111,11 @@ public abstract class Client<S extends IInterface> {
     protected <R> ListenableFuture<R> executeWithVersionCheck(
             int minApiVersion, @NonNull RemoteFutureOperation<S, R> operation) {
         SettableFuture<R> settableFuture = SettableFuture.create();
+        if (mRemoteVersionGetter == null) {
+            mConnectionManager.scheduleForExecution(
+                    createQueueOperation(operation, settableFuture));
+            return settableFuture;
+        }
         ListenableFuture<Integer> versionFuture =
                 getCurrentRemoteVersion(/* forceRefresh= */ false);
         Futures.addCallback(

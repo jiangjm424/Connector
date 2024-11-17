@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.connector.client"
+    namespace = "com.example.appclient"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.appclient"
+        applicationId = "com.example.connector.client"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

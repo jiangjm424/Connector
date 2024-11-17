@@ -35,8 +35,8 @@ android {
 dependencies {
 
     implementation("com.google.guava:listenablefuture:1.0")
-    implementation("com.google.guava:guava:30.1-android")
-    implementation("org.jetbrains.kotlin:kotlinx-coroutines-guava:+")
+    api("com.google.guava:guava:30.1-android")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-guava:1.9.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
