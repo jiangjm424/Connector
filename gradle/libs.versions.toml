@@ -13,6 +13,11 @@ lifecycleViewmodelKtx = "2.6.1"
 navigationFragmentKtx = "2.6.0"
 navigationUiKtx = "2.6.0"
 
+[plugins]
+binaryCompatibility = "org.jetbrains.kotlinx.binary-compatibility-validator:0.13.2"
+dokka = "org.jetbrains.dokka:1.8.20"
+spotless = "com.diffplug.spotless:6.19.0"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
