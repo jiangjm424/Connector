@@ -12,13 +12,12 @@ lifecycleLivedataKtx = "2.6.1"
 lifecycleViewmodelKtx = "2.6.1"
 navigationFragmentKtx = "2.6.0"
 navigationUiKtx = "2.6.0"
-
-[plugins]
-binaryCompatibility = "org.jetbrains.kotlinx.binary-compatibility-validator:0.13.2"
-dokka = "org.jetbrains.dokka:1.8.20"
-spotless = "com.diffplug.spotless:6.19.0"
+ktlint = "0.48.2"
 
 [libraries]
+gradlePlugin-android = "com.android.tools.build:gradle:8.6.0"
+gradlePlugin-kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0"
+gradlePlugin-mavenPublish = "com.vanniktech:gradle-maven-publish-plugin:0.25.2"
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -30,9 +29,12 @@ androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecy
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
+ktlint = { module = "com.pinterest.ktlint:ktlint-core", version.ref = "ktlint" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-
+binaryCompatibility = "org.jetbrains.kotlinx.binary-compatibility-validator:0.13.2"
+dokka = "org.jetbrains.dokka:1.8.20"
+spotless = "com.diffplug.spotless:6.19.0"

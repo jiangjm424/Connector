@@ -1,9 +1,33 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+import jm.compile.by
+import jm.compile.groupId
+import jm.compile.versionName
+import com.diffplug.gradle.spotless.SpotlessExtension
+import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
+import java.net.URL
+import kotlinx.validation.ApiValidationExtension
+import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
+import org.jetbrains.dokka.gradle.DokkaTaskPartial
+import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinTopLevelExtension
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath(libs.gradlePlugin.android)
+        classpath(libs.gradlePlugin.kotlin)
+        classpath(libs.gradlePlugin.mavenPublish)
+    }
+}
+
+
 plugins {
-    alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.kotlin.android) apply false
-    alias(libs.plugins.android.library) apply false
-    
+
     alias(libs.plugins.binaryCompatibility)
     alias(libs.plugins.dokka)
     alias(libs.plugins.spotless)
